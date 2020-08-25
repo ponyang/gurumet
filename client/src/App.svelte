@@ -1,6 +1,4 @@
 <script>
-  import Nested from './Nested.svelte'
-  import Inner from './Inner.svelte'
 
   let rand = -1;
   function getRand() {
@@ -41,14 +39,10 @@
   {count} doubled is {doubled}
 </p>
 
-<Nested />
-<br/>
 
 <button on:click|self={handleAlert}>
 print event.target
 </button>
-
-<Inner on:message={handleMessage} />
 
 <input bind:value={name} />
 <h2>내이름은 {name}</h2>
