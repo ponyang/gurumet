@@ -33,7 +33,7 @@ export default {
 		}),
 		commonjs(),
 
-		!production && livereload('public'),
+		!production && livereload({watch:'public', port:35730}),
 
 		production && terser()
 	],
