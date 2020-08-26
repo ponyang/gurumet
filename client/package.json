@@ -12,8 +12,11 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "node-sass": "^4.14.1",
     "page": "^1.11.6",
-    "sirv-cli": "^0.4.4"
+    "rollup-plugin-postcss": "^3.1.6",
+    "sirv-cli": "^0.4.4",
+    "svelte-material-ui": "^1.0.0"
   },
   "scripts": {
     "build": "rollup -c",

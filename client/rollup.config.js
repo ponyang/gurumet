@@ -3,6 +3,7 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser'; //생성된 ES 번들을 최소화
+import postcss from 'rollup-plugin-postcss';
 
 
 const production = !process.env.ROLLUP_WATCH;
@@ -32,8 +33,22 @@ export default {
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 		}),
 		commonjs(),
+		// Then paste the following after it.
+		// Once in the "client:" section, and again in the "server:" section.
+		postcss({
+			extract: true,
+			minimize: true,
+			use: [
+	  			['sass', {
+					includePaths: [
+		  				'./src/theme',
+		  				'./node_modules'
+					]
+	  			}]
+			]
+  		}),
 
-		!production && livereload({watch:'public', port:35730}),
+		!production && livereload('public'),
 
 		production && terser()
 	],

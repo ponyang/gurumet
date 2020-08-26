@@ -1,4 +1,4 @@
-import App from './App.svelte';
+import App from './Page.svelte';
 
 const app = new App({
 	//출력 생성물을 document.body에 삽입 
