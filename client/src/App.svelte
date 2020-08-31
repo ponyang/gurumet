@@ -1,48 +1,55 @@
 <script>
+  import { Router, Route, NotFound } from './pager'
 
-  let rand = -1;
-  function getRand() {
-    fetch("./rand")
-      .then(d => d.text())
-      .then(d => (rand = d));
-  }
-
-  let count = 0;
-  $: doubled = count * 2;
-
-  function handleClick(){
-    count +=1;
-    
-  }
-  $:console.log( `the count is ${count}`);
-
-
-  function handleAlert(self) {
-    console.log( self );
-  }
-  
-  function handleMessage(event){
-    console.log( event);
-    alert(event.detail.text +"\n"+ event.detail.desc);
-  }
-
-  let name = '';
+  import Home from './pages/Home.svelte';
+  import About from './pages/About.svelte';
+  import Profile from './pages/Profile.svelte';
 </script>
-
-<h1>Your number is {rand}!</h1>
-<button on:click={getRand}>Get a random number</button>
-
-<button on:click={handleClick}>
-  Clicked {count} {count === 1 ? 'time' : 'times'}
-</button>
-<p>
-  {count} doubled is {doubled}
-</p>
-
-
-<button on:click|self={handleAlert}>
-print event.target
-</button>
-
-<input bind:value={name} />
-<h2>내이름은 {name}</h2>
+  
+  <style>
+    main {
+      text-align: center;
+      padding: 1em;
+      max-width: 240px;
+      margin: 0 auto;
+    }
+  
+    h1 {
+      color: #ff3e00;
+      text-transform: uppercase;
+      font-size: 4em;
+      font-weight: 100;
+    }
+  
+    @media (min-width: 640px) {
+      main {
+        max-width: none;
+      }
+    }
+  
+    nav a {
+      padding-right: 3rem;
+    }
+  </style>
+  
+  <main>
+    <nav>
+      <a href="/">home11</a>
+      <a href="/about">about22</a>
+      <a href="/profile">profile33</a>
+      <a href="/news">news44</a>
+    </nav>
+  
+    <Router>
+      <Route path="/" component="{Home}" />
+      <Route path="/about" component="{About}" />
+      <Route path="/profile" component="{Profile}" />
+      <Route path="/news">
+        <h2>Latest News</h2>
+        <p>Finally some good news!</p>
+      </Route>
+      <NotFound>
+        <h2>Sorry. Page not found.</h2>
+      </NotFound>
+    </Router>
+  </main>

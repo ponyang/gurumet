@@ -30,7 +30,7 @@ export default {
 			browser: true,
 			//dedupe default []
 			//의존성에 의해 패키지 import할 때 같은 패키지가 중복으로 들어가는 것을 방지
-			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
+			//dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 		}),
 		commonjs(),
 		// Then paste the following after it.
