@@ -1,47 +1,40 @@
 <script>
-  import { Router, Route, NotFound } from './pager'
+  import './theme/_smui-theme.scss';
+  import { Router, Route, NotFound, } from './pager'
 
   import Home from './pages/Home.svelte';
   import About from './pages/About.svelte';
   import Profile from './pages/Profile.svelte';
+
+  const data = { foo: 'bar', custom: true };
 </script>
   
   <style>
+  main {
+    padding: 1em;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+  @media (min-width: 640px) {
     main {
-      text-align: center;
-      padding: 1em;
-      max-width: 240px;
-      margin: 0 auto;
+      max-width: none;
     }
-  
-    h1 {
-      color: #ff3e00;
-      text-transform: uppercase;
-      font-size: 4em;
-      font-weight: 100;
-    }
-  
-    @media (min-width: 640px) {
-      main {
-        max-width: none;
-      }
-    }
-  
-    nav a {
-      padding-right: 3rem;
-    }
+  }
+  nav a {
+    padding-right: 3rem;
+  }
   </style>
   
   <main>
     <nav>
-      <a href="/">home11</a>
-      <a href="/about">about22</a>
-      <a href="/profile">profile33</a>
-      <a href="/news">news44</a>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/profile">Profile</a>
+      <a href="/news">News</a>
     </nav>
   
     <Router>
-      <Route path="/" component="{Home}" />
+      <Route path="/" component="{Home}" {data}/>
       <Route path="/about" component="{About}" />
       <Route path="/profile" component="{Profile}" />
       <Route path="/news">
